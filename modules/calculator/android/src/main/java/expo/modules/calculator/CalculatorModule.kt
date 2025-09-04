@@ -61,6 +61,7 @@ class CalculatorModule : Module() {
     View(NativeStyledTextView::class) {
       // No props or events needed
     }
+
   }
 }
 

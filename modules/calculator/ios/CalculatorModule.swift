@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import UIKit
 
 public class CalculatorModule: Module {
   // Each module class must implement the definition function. The definition consists of components
@@ -52,6 +53,7 @@ public class CalculatorModule: Module {
     View(NativeStyledTextView.self) {
       // No props or events needed  
     }
+
   }
 }
 
