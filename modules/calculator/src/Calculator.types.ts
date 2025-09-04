@@ -17,3 +17,11 @@ export type CalculatorViewProps = {
   onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
   style?: StyleProp<ViewStyle>;
 };
+
+export type NativeButtonViewProps = {
+  style?: StyleProp<ViewStyle>;
+};
+
+export type NativeStyledTextViewProps = {
+  style?: StyleProp<ViewStyle>;
+};
