@@ -64,7 +64,7 @@ export default function RootLayout() {
             presentation: "formSheet",
             headerShown: false,
             sheetAllowedDetents:
-              Platform.OS === "ios" ? "fitToContents" : [0.4, 0.9],
+              Platform.OS === "ios" ? "fitToContents" : [0.9],
             sheetCornerRadius: 20,
           }}
         />

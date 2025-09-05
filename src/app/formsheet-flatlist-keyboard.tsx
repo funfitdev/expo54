@@ -1,16 +1,6 @@
 import { useState } from "react";
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import Animated, {
-  useAnimatedKeyboard,
-  useAnimatedStyle,
-} from "react-native-reanimated";
+import { Dimensions, FlatList, Text, TextInput, View } from "react-native";
+import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { height: screenHeight } = Dimensions.get("window");
@@ -40,84 +30,48 @@ export default function ModalScreen() {
       item.description.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const renderStickyBottom = () => (
-    <Animated.View style={[styles.stickyBottom, textInputStyle]}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search items..."
-        placeholderTextColor="#999"
-        value={searchText}
-        onChangeText={setSearchText}
-      />
-    </Animated.View>
-  );
-
   return (
-    <FlatList
-      style={styles.flatListStyle}
-      contentContainerStyle={{
-        gap: 20,
-        paddingBottom: insets.bottom + 200,
-      }}
-      data={filteredData}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => (
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemTitle}>{item.title}</Text>
-          <Text style={styles.itemDescription}>{item.description}</Text>
-        </View>
-      )}
-      nestedScrollEnabled
-    />
+    <>
+      <FlatList
+        style={{ height: screenHeight * 0.9 - 100, backgroundColor: "green" }}
+        contentContainerStyle={{
+          gap: 20,
+          paddingBottom: insets.bottom + 200,
+        }}
+        data={filteredData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              padding: 20,
+              backgroundColor: "white",
+              marginHorizontal: 20,
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              {item.title}
+            </Text>
+            <Text style={{ fontSize: 14, color: "#666" }}>
+              {item.description}
+            </Text>
+          </View>
+        )}
+        nestedScrollEnabled
+      />
+      <View
+        style={{
+          height: 100,
+          backgroundColor: "yellow",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+        collapsable={false}
+      >
+        <TextInput placeholder="Comment Here." />
+      </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "green",
-  },
-  flatListStyle: {
-    // flex: 1,
-    backgroundColor: "red",
-  },
-  stickyBottom: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "green",
-    padding: 20,
-    paddingBottom: 40, // Extra padding for safe area
-  },
-  searchInput: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: "#ddd",
-  },
-  itemContainer: {
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 8,
-  },
-  itemTitle: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-  itemDescription: {
-    color: "white",
-    fontSize: 14,
-    opacity: 0.8,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-});
