@@ -1,9 +1,9 @@
 {
-  "platforms": ["apple", "android", "web"],
-  "apple": {
-    "modules": ["RazorpayModule"]
-  },
+  "platforms": ["android", "ios"],
   "android": {
     "modules": ["expo.modules.razorpay.RazorpayModule"]
+  },
+  "ios": {
+    "modules": ["RazorpayModule"]
   }
 }

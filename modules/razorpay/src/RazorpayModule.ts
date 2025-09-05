@@ -1,11 +1,11 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { RazorpayModuleEvents } from './Razorpay.types';
+import { RazorpayOptions, PaymentResult } from './Razorpay.types';
 
-declare class RazorpayModule extends NativeModule<RazorpayModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
+declare class RazorpayModule extends NativeModule {
+  SDK_VERSION: string;
+  initializePayment(options: RazorpayOptions): Promise<PaymentResult>;
+  getVersion(): string;
 }
 
 // This call loads the native module object from the JSI.

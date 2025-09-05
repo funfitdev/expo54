@@ -1,19 +1,60 @@
-import type { StyleProp, ViewStyle } from 'react-native';
+export interface RazorpayOptions {
+  key: string;
+  amount: number; // Amount in paise (smallest currency unit)
+  currency?: string;
+  orderId?: string;
+  name: string;
+  description?: string;
+  image?: string;
+  prefill?: PrefillOptions;
+  notes?: Record<string, any>;
+  theme?: ThemeOptions;
+  modal?: ModalOptions;
+  readonly?: ReadonlyOptions;
+}
 
-export type OnLoadEventPayload = {
-  url: string;
-};
+export interface PrefillOptions {
+  name?: string;
+  email?: string;
+  contact?: string;
+}
 
-export type RazorpayModuleEvents = {
-  onChange: (params: ChangeEventPayload) => void;
-};
+export interface ThemeOptions {
+  color?: string;
+  backdropColor?: string;
+}
 
-export type ChangeEventPayload = {
-  value: string;
-};
+export interface ModalOptions {
+  backdropClose?: boolean;
+  escape?: boolean;
+  handleback?: boolean;
+  confirm_close?: boolean;
+}
 
-export type RazorpayViewProps = {
-  url: string;
-  onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
-  style?: StyleProp<ViewStyle>;
-};
+export interface ReadonlyOptions {
+  email?: boolean;
+  contact?: boolean;
+  name?: boolean;
+}
+
+export enum PaymentStatus {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  CANCELLED = 'cancelled',
+}
+
+export interface PaymentResult {
+  status: PaymentStatus;
+  paymentId?: string;
+  orderId?: string;
+  signature?: string;
+  error?: PaymentError;
+}
+
+export interface PaymentError {
+  code: string;
+  description: string;
+  source?: string;
+  step?: string;
+  reason?: string;
+}

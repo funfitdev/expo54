@@ -1,18 +1,19 @@
 Pod::Spec.new do |s|
   s.name           = 'Razorpay'
   s.version        = '1.0.0'
-  s.summary        = 'A sample project summary'
-  s.description    = 'A sample project description'
+  s.summary        = 'Razorpay payment gateway integration for Expo'
+  s.description    = 'A module for integrating Razorpay payments in Expo/React Native apps'
   s.author         = ''
   s.homepage       = 'https://docs.expo.dev/modules/'
   s.platforms      = {
-    :ios => '15.1',
+    :ios => '12.0',
     :tvos => '15.1'
   }
   s.source         = { git: '' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
+  s.dependency 'razorpay-pod', '~> 1.3.9'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
