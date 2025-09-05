@@ -1,5 +1,5 @@
 ```
-npx create-expo-module --local calculator
+npx create-expo-module --local razorpay
 npx expo prebuild
 npx expo run ios
 npx expo prebuild --clean
