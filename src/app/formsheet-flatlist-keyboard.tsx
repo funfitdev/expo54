@@ -58,7 +58,6 @@ export default function ModalScreen() {
       contentContainerStyle={{
         gap: 20,
         paddingBottom: insets.bottom + 200,
-        flex: 1,
       }}
       data={filteredData}
       keyExtractor={(item) => item.id.toString()}
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
   },
   flatListStyle: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: "red",
   },
   stickyBottom: {
