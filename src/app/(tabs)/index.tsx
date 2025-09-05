@@ -4,6 +4,13 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Native Module Demo</Text>
+
+      <Text style={styles.sectionTitle}>Native Button Test</Text>
+
+      <Text style={styles.sectionTitle}>Features</Text>
+      <Text>• SwiftUI Button on iOS</Text>
+      <Text>• Material3 Button on Android</Text>
+      <Text>• Cross-platform TypeScript interface</Text>
     </View>
   );
 }

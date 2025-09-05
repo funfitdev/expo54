@@ -2,7 +2,8 @@
 npx create-expo-module --local calculator
 npx expo prebuild
 npx expo run ios
-
+npx expo prebuild --clean
+xed ios
 
 react-navigation + formSheet
 gorhorm - BottomSheet
