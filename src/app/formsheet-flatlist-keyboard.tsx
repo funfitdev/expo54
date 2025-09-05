@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { Dimensions, FlatList, Text, TextInput, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { height: screenHeight } = Dimensions.get("window");
+const sheetHeight = screenHeight * 0.9;
 
 export default function ModalScreen() {
   const insets = useSafeAreaInsets();
@@ -15,6 +23,7 @@ export default function ModalScreen() {
     };
   });
   const [searchText, setSearchText] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   // Sample data to filter
   const data = Array.from({ length: 20 }, (_, i) => ({
@@ -30,13 +39,29 @@ export default function ModalScreen() {
       item.description.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  if (toggle) {
+    return (
+      <View style={{ height: sheetHeight, backgroundColor: "green" }}>
+        <TextInput
+          multiline
+          numberOfLines={4}
+          placeholder="Type your message..."
+        />
+        <TouchableOpacity onPress={() => setToggle(false)}>
+          <Text>Send</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <>
       <FlatList
-        style={{ height: screenHeight * 0.9 - 100, backgroundColor: "green" }}
+        style={{ height: sheetHeight, backgroundColor: "green" }}
         contentContainerStyle={{
           gap: 20,
-          paddingBottom: insets.bottom + 200,
+          paddingVertical: 20,
+          paddingBottom: insets.bottom + 20,
         }}
         data={filteredData}
         keyExtractor={(item) => item.id.toString()}
@@ -59,19 +84,19 @@ export default function ModalScreen() {
         )}
         nestedScrollEnabled
       />
-      <View
+      <TouchableOpacity
         style={{
-          height: 100,
+          height: 48,
+          width: 48,
           backgroundColor: "yellow",
           position: "absolute",
           bottom: 0,
-          left: 0,
-          right: 0,
+          right: 20,
         }}
-        collapsable={false}
+        onPress={() => setToggle(!toggle)}
       >
-        <TextInput placeholder="Comment Here." />
-      </View>
+        <Text>Add</Text>
+      </TouchableOpacity>
     </>
   );
 }
