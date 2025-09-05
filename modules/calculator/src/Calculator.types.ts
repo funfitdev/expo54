@@ -25,3 +25,16 @@ export type NativeButtonViewProps = {
 export type NativeStyledTextViewProps = {
   style?: StyleProp<ViewStyle>;
 };
+
+export type OnDismissEventPayload = {
+  dismissed: boolean;
+};
+
+export type NativeBottomSheetViewProps = {
+  testProp?: string;
+  isVisible?: boolean;
+  title?: string;
+  content?: string;
+  onDismiss?: (event: { nativeEvent: OnDismissEventPayload }) => void;
+  style?: StyleProp<ViewStyle>;
+};
